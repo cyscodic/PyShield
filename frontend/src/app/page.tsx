@@ -18,7 +18,7 @@ export default function Home() {
   const [terminalLogs, setTerminalLogs] = useState<string[]>([]);
   const [logIndex, setLogIndex] = useState(0);
 
-  const API = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001";
+  const API = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001").replace(/\/$/, "");
   const tagline = "scan --target your_code.py --deep --ai";
 
   const consoleLogs = [

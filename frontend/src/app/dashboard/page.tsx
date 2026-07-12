@@ -12,7 +12,7 @@ export default function Dashboard() {
   const [showResults, setShowResults] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  const API = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001";
+  const API = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8001").replace(/\/$/, "");
 
   useEffect(() => { setMounted(true); }, []);
 
