@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.core.security import hash_password, verify_password, create_access_token
 from app.models.user import User
-from app.schemas.user import UserCreate, UserLogin, UserResponse, Token
+from app.schemas.user import UserCreate, UserLogin, UserResponse, Token, UserResetPassword
 
 router = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -49,3 +49,19 @@ def login(user_data: UserLogin, db: Session = Depends(get_db)):
     # Create and return the token
     access_token = create_access_token(data={"sub": user.email})
     return {"access_token": access_token}
+
+
+@router.post("/reset-password")
+def reset_password(user_data: UserResetPassword, db: Session = Depends(get_db)):
+    """Reset a user's password directly (Demo version)."""
+    user = db.query(User).filter(User.email == user_data.email).first()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="If the email exists, the password has been reset.",
+        )
+
+    user.hashed_password = hash_password(user_data.new_password)
+    db.commit()
+
+    return {"message": "Password successfully reset."}

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const [isRegister, setIsRegister] = useState(false);
+  const [isResetPassword, setIsResetPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
@@ -83,8 +84,8 @@ export default function Home() {
     e.preventDefault();
     setError("");
     setLoading(true);
-    const endpoint = isRegister ? "/api/auth/register" : "/api/auth/login";
-    const body = isRegister ? { email, password, full_name: fullName } : { email, password };
+    const endpoint = isResetPassword ? "/api/auth/reset-password" : isRegister ? "/api/auth/register" : "/api/auth/login";
+    const body = isResetPassword ? { email, new_password: password } : isRegister ? { email, password, full_name: fullName } : { email, password };
     try {
       const res = await fetch(`${API}${endpoint}`, {
         method: "POST",
@@ -93,7 +94,11 @@ export default function Home() {
       });
       const data = await res.json();
       if (!res.ok) { setError(data.detail || "Something went wrong"); setLoading(false); return; }
-      if (isRegister) {
+      if (isResetPassword) {
+        setIsResetPassword(false);
+        setError("");
+        alert("Password reset successfully! Please login with your new password.");
+      } else if (isRegister) {
         setIsRegister(false);
         setError("");
         alert("Account created! Please login.");
@@ -313,24 +318,33 @@ export default function Home() {
               <span style={{ fontWeight: 700, fontSize: "18px" }}>Py<span style={{ color: "var(--accent)" }}>Shield</span></span>
             </div>
             <h2 style={{ fontSize: "22px", fontWeight: 700, marginBottom: "4px" }}>
-              {isRegister ? "Create Account" : "Welcome Back"}
+              {isResetPassword ? "Reset Password" : isRegister ? "Create Account" : "Welcome Back"}
             </h2>
             <p style={{ color: "var(--text-secondary)", marginBottom: "24px", fontSize: "13px" }}>
-              {isRegister ? "Start securing your Python code" : "Login to continue scanning"}
+              {isResetPassword ? "Enter your email and new password" : isRegister ? "Start securing your Python code" : "Login to continue scanning"}
             </p>
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              {isRegister && <input type="text" placeholder="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} className="input-dark" />}
+              {!isResetPassword && isRegister && <input type="text" placeholder="Full Name" value={fullName} onChange={(e) => setFullName(e.target.value)} className="input-dark" />}
               <input type="email" placeholder="Email" value={email} required onChange={(e) => setEmail(e.target.value)} className="input-dark" />
-              <input type="password" placeholder="Password" value={password} required onChange={(e) => setPassword(e.target.value)} className="input-dark" />
+              <input type="password" placeholder={isResetPassword ? "New Password" : "Password"} value={password} required onChange={(e) => setPassword(e.target.value)} className="input-dark" />
               {error && <p style={{ color: "var(--critical)", fontSize: "13px" }}>{error}</p>}
+              
+              {!isRegister && !isResetPassword && (
+                <p style={{ textAlign: "right", margin: 0 }}>
+                  <span onClick={() => { setIsResetPassword(true); setError(""); }} style={{ fontSize: "12px", color: "var(--text-secondary)", cursor: "pointer" }}>
+                    Forgot Password?
+                  </span>
+                </p>
+              )}
+
               <button className="btn-primary" type="submit" disabled={loading} style={{ width: "100%", marginTop: "8px", opacity: loading ? 0.6 : 1 }}>
-                {loading ? "Processing..." : isRegister ? "Create Account" : "Login →"}
+                {loading ? "Processing..." : isResetPassword ? "Reset Password" : isRegister ? "Create Account" : "Login →"}
               </button>
             </form>
             <p style={{ textAlign: "center", marginTop: "20px", fontSize: "13px", color: "var(--text-secondary)" }}>
-              {isRegister ? "Already have an account?" : "No account?"}{" "}
-              <span onClick={() => { setIsRegister(!isRegister); setError(""); }} style={{ color: "var(--accent)", cursor: "pointer", fontWeight: 600 }}>
-                {isRegister ? "Login" : "Sign Up"}
+              {isResetPassword ? "Remember your password?" : isRegister ? "Already have an account?" : "No account?"}{" "}
+              <span onClick={() => { setIsRegister(isResetPassword ? false : !isRegister); setIsResetPassword(false); setError(""); }} style={{ color: "var(--accent)", cursor: "pointer", fontWeight: 600 }}>
+                {isResetPassword ? "Login" : isRegister ? "Login" : "Sign Up"}
               </span>
             </p>
           </div>
