@@ -67,5 +67,3 @@ This project is structured for a microservices deployment:
 *   The **Frontend** is deployed serverlessly via **Vercel**.
 *   Communication between the two is handled via REST APIs secured by JWT Authentication.
 
----
-*Built with ❤️ to make the Python ecosystem more secure.*
