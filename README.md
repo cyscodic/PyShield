@@ -5,6 +5,7 @@
 # PyShield 2.0 
 ### *AI Security Engine for Python*
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-pyshield.vercel.app-00E5A0?style=for-the-badge&logo=vercel&logoColor=white)](https://pyshield.vercel.app)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Next.js](https://img.shields.io/badge/Next.js-14+-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org)
