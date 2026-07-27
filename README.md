@@ -2,7 +2,7 @@
   <img src="frontend/public/logo.jpg" alt="PyShield 2.0 Logo" width="160" style="border-radius: 12px;" />
 </p>
 
-# PyShield 2.0 🛡️
+# PyShield 2.0 
 ### *AI Security Engine for Python*
 
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
