@@ -18,7 +18,7 @@
 ## 🌟 Key Features
 
 - 🔍 **Compiler-Level AST Analysis:** Uses Python's native Abstract Syntax Tree (`ast`) module to parse code syntax, eliminating regex false positives and catching threats at the structural level.
-- 🤖 **AI-Powered Code Remediation:** Integrated with **Google Gemini 2.0 API** to generate context-aware, refactored secure code patches and vulnerability explanations.
+- 🤖 **Autonomous AI Security Agent:** Powered by **Google Gemini 2.0 API** to evaluate code for security flaws, explain vulnerabilities, and automatically generate 100% vulnerability-free replacement code.
 - 🛡️ **Offline Fallback Engine:** Features a local rule-based remediation system ensuring 100% scanning uptime even if API limits or network outages occur.
 - 📊 **Dynamic Health Scoring System:** Assigns an instant security grade (**A+ to F**) with a transparent, rule-weighted point-deduction breakdown.
 - ⚡ **Full-Stack Microservices Architecture:** High-performance FastAPI backend containerized with Docker, paired with a modern React/Next.js Glassmorphism dashboard on Vercel.
