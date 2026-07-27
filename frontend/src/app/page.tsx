@@ -153,10 +153,10 @@ export default function Home() {
           <span style={{ fontSize: "20px", fontWeight: 800, letterSpacing: "-0.5px" }}>
             Py<span style={{ color: "var(--accent)" }}>Shield</span>
           </span>
-          <span className="badge-low badge" style={{ marginLeft: "8px" }}>v1.0</span>
+          <span className="badge-low badge" style={{ marginLeft: "8px" }}>v2.0</span>
         </div>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <a href="http://127.0.0.1:8001/docs" target="_blank" rel="noreferrer"
+          <a href={`${API}/docs`} target="_blank" rel="noreferrer"
             style={{ color: "var(--text-secondary)", fontSize: "14px", textDecoration: "none" }}>API Docs</a>
           <button className="btn-primary" onClick={handleStartScanning} style={{ padding: "10px 24px", fontSize: "13px" }}>
             {isLoggedIn ? "Go to Dashboard" : "Get Started"}
@@ -206,7 +206,7 @@ export default function Home() {
           <button className="btn-primary" onClick={handleStartScanning}>
             {isLoggedIn ? "Go to Dashboard →" : "Start Scanning →"}
           </button>
-          <a href="http://127.0.0.1:8001/docs" target="_blank" rel="noreferrer" className="btn-outline">API Docs</a>
+          <a href={`${API}/docs`} target="_blank" rel="noreferrer" className="btn-outline">API Docs</a>
         </div>
 
         {/* NEW: Live Animated Terminal Demonstration */}
