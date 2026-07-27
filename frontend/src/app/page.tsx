@@ -156,8 +156,6 @@ export default function Home() {
           <span className="badge-low badge" style={{ marginLeft: "8px" }}>v2.0</span>
         </div>
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-          <a href={`${API}/docs`} target="_blank" rel="noreferrer"
-            style={{ color: "var(--text-secondary)", fontSize: "14px", textDecoration: "none" }}>API Docs</a>
           <button className="btn-primary" onClick={handleStartScanning} style={{ padding: "10px 24px", fontSize: "13px" }}>
             {isLoggedIn ? "Go to Dashboard" : "Get Started"}
           </button>
@@ -203,10 +201,9 @@ export default function Home() {
         </p>
 
         <div className="fade-in fade-in-delay-3" style={{ display: "flex", gap: "12px", flexWrap: "wrap", justifyContent: "center", marginBottom: "64px" }}>
-          <button className="btn-primary" onClick={handleStartScanning}>
+          <button className="btn-primary" onClick={handleStartScanning} style={{ padding: "14px 36px", fontSize: "15px" }}>
             {isLoggedIn ? "Go to Dashboard →" : "Start Scanning →"}
           </button>
-          <a href={`${API}/docs`} target="_blank" rel="noreferrer" className="btn-outline">API Docs</a>
         </div>
 
         {/* NEW: Live Animated Terminal Demonstration */}
@@ -270,12 +267,13 @@ export default function Home() {
         {/* Features */}
         <div style={{
           display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-          gap: "16px", marginTop: "80px", maxWidth: "880px", width: "100%", padding: "0 20px"
+          gap: "16px", marginTop: "80px", maxWidth: "960px", width: "100%", padding: "0 20px"
         }}>
           {[
-            { icon: "⟩_", title: "AST Deep Scan", desc: "Parses Python into Abstract Syntax Trees to detect dangerous patterns at the structural level." },
-            { icon: "◈", title: "AI Fix Suggestions", desc: "Gemini AI analyzes each vulnerability and provides production-ready code fixes." },
-            { icon: "⚡", title: "12 Security Rules", desc: "Catches eval(), SQL injection, hardcoded secrets, command injection, and more." },
+            { icon: "🤖", title: "AI Remediation Agent", desc: "An intelligent agent that evaluates your code for security flaws and automatically generates 100% vulnerability-free replacement code." },
+            { icon: "⟩_", title: "AST Deep Scan", desc: "Parses Python into Abstract Syntax Trees to detect dangerous patterns at the structural level without false positives." },
+            { icon: "🛡️", title: "Fail-Safe Engine", desc: "Includes a local fallback module ensuring 100% scanning uptime even if API limits occur." },
+            { icon: "⚡", title: "12+ Security Rules", desc: "Catches eval(), SQL injection, hardcoded secrets, command injection, and weak hashing." },
           ].map((f, i) => (
             <div key={i} className="glass-card" style={{ padding: "28px", textAlign: "left" }}>
               <div className="terminal-text" style={{
